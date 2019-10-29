@@ -1,41 +1,19 @@
 <template>
-  <!-- <div>
-    <div class="box">
-      <h1>这里是第一条博客</h1>
-      <p>一切从此开始...</p>
-    </div>
-  </div>-->
   <div>
     <div class="markdown">
-      <div class="container">
-        <mavon-editor
-          v-model="content"
-          ref="md"
-          @imgAdd="$imgAdd"
-          @change="change"
-          style="height: 600px"
-        />
-        <el-button @click="submit">提交</el-button>
-      </div>
+      <mavon-editor
+        v-model="content"
+        ref="md"
+        @imgAdd="$imgAdd"
+        @change="change"
+        style="height: 600px"
+      />
+      <el-button style="margin-top:3rem;" @click="submit">提交</el-button>
     </div>
   </div>
 </template>
  <script>
-import { mavonEditor } from "mavon-editor";
-import "mavon-editor/dist/css/index.css";
 export default {
-  // data() {
-  //   return {};
-  // },
-  // props: {},
-  // methods: {}
-
-  name: "",
-  props: [],
-  // 注册
-  components: {
-    mavonEditor
-  },
   data() {
     return {
       content: "", // 输入的markdown

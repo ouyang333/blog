@@ -21,19 +21,36 @@
         </el-tooltip>
       </div>
     </div>
-    <el-scrollbar class="box-scrollbar" :style="rainy?'color:#ddd':'color:#333'">
-      <router-view />
-    </el-scrollbar>
+    <router-view class="box-scrollbar" />
+
+    <div class="recommend" :style="rainy?'color:#fff':'color:#000'">
+      <el-collapse v-model="activeName" accordion>
+        <el-collapse-item
+          v-for="(item,i) in recommend"
+          :key="i"
+          :title="item.title"
+          :name="item.name"
+          @mouseenter.native="getActiveName(item.name)"
+          @click="toArticle(name)"
+        >
+          <div v-for="(text,index) in item.text" :key="index">{{text}}</div>
+        </el-collapse-item>
+      </el-collapse>
+    </div>
+
+    <!-- <article class="context" v-html="compiledMarkdown"></article> -->
+
     <!-- 卡密哒！ -->
     <Live2d :theme="theme" :dialogText="dialogText" :dialogShow="dialogShow"></Live2d>
     <!-- 雨，也因为雨，所有同级标签需要加上position:fixed;此后有空可以优化，两极反转 -->
-    <Rain v-show="rainy" style="pointer-events: none;"></Rain>
+    <Rain v-show="rainy"></Rain>
   </div>
 </template>
 
 <script>
 import Live2d from "@/components/live2d";
 import Rain from "@/components/rain";
+import marked from "marked";
 export default {
   name: "Home",
   components: {
@@ -101,10 +118,49 @@ export default {
           dialogText: "bilibili干杯!( ゜- ゜)つロ"
         }
       ],
+      recommend: [
+        {
+          title: "一致性 Consistency",
+          name: "Consistency",
+          text: [
+            "与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；",
+            "在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。"
+          ]
+        },
+        {
+          title: "反馈 Feedback",
+          name: "Feedback",
+          text: [
+            "控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；",
+            "页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。"
+          ]
+        },
+        {
+          title: "效率 Efficiency",
+          name: "Efficiency",
+          text: [
+            "简化流程：设计简洁直观的操作流程；",
+            "清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；",
+            "帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。"
+          ]
+        },
+        {
+          title: "可控 Controllability",
+          name: "Controllability",
+          text: [
+            "用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；",
+            "结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。"
+          ]
+        }
+      ],
       dialogText: "",
       dialogShow: false,
       rainy: true,
-      theme: "dark"
+      theme: "dark",
+      articleDetail: {
+        context: "# Hello World\n```\n这里是第一条博客\n```\n也是梦开始的地方"
+      },
+      activeName: ""
     };
     var timer;
   },
@@ -145,10 +201,24 @@ export default {
         this.$refs.home.classList.remove("rainy-sunny");
         this.$refs.home.classList.add("sunny-rainy");
       }
+    },
+    getActiveName(name) {
+      this.activeName = name;
+    },
+    toArticle(name) {
+      console.log(name);
+      this.$router.replace("/" + name);
     }
   },
-  computed: {},
+  computed: {
+    compiledMarkdown() {
+      //this.articleDetail.context数据
+      // return marked(this.articleDetail.context, { sanitize: true });
+      return marked(this.articleDetail.context);
+    }
+  },
   created() {
+    console.log(this)
     var self = this;
     document.onkeydown = function(e) {
       let onEvent = window.event;
@@ -215,8 +285,9 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.4;
+  opacity: 0.5;
   filter: blur(5px);
+  pointer-events: none;
 }
 
 .title {
@@ -267,7 +338,18 @@ export default {
   left: 50%;
   top: 6rem;
   color: #ddd;
-  /* height: clac(100% - 6rem); */
-  /* width: 60%; */
+  height: 80%;
+}
+
+.recommend {
+  position: relative;
+  width: 60%;
+  height: calc(100% - 15rem);
+  overflow: auto;
+  top: 10rem;
+  left: 30%;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

@@ -72,11 +72,13 @@ html {
 }
 
 #body {
-  position: relative;
+  position: absolute;
   height: 100%;
-  /* top: 1rem; */
+  width: 100%;
+  top: 0;
   margin: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .rain {
