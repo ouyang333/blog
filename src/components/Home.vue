@@ -21,7 +21,6 @@
         </el-tooltip>
       </div>
     </div>
-    <router-view class="box-scrollbar" />
 
     <div class="recommend" :style="rainy?'color:#fff':'color:#000'">
       <el-collapse v-model="activeName" accordion>
@@ -31,13 +30,15 @@
           :title="item.title"
           :name="item.name"
           @mouseenter.native="getActiveName(item.name)"
-          @click="toArticle(name)"
+          @click.native="toArticle(item.name)"
         >
           <div v-for="(text,index) in item.text" :key="index">{{text}}</div>
         </el-collapse-item>
       </el-collapse>
     </div>
 
+    <router-view class="box-scrollbar" />
+    
     <!-- <article class="context" v-html="compiledMarkdown"></article> -->
 
     <!-- 卡密哒！ -->
@@ -207,7 +208,8 @@ export default {
     },
     toArticle(name) {
       console.log(name);
-      this.$router.replace("/" + name);
+      // this.$router.replace("/" + name);
+      this.$router.replace("/tablet");
     }
   },
   computed: {
