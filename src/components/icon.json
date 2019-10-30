@@ -1,0 +1,61 @@
+{
+    "icon": [
+        {
+            "title": "天气",
+            "methods": "changeWeather",
+            "src": "../../static/svg/rainy.svg",
+            "dialogText": ""
+        },
+        {
+            "title": "主页",
+            "methods": "toHome",
+            "src": "../../static/svg/home.svg",
+            "dialogText": "欢迎回到主页，我可不会帮你寻觅知识ヾ(•ω•`)o"
+        },
+        {
+            "title": "知识",
+            "methods": "toKnowledge",
+            "src": "../../static/svg/toKnowledge.svg",
+            "dialogText": "可恶，我最珍贵的财富才不会分享给你(っ °Д °;)っ"
+        },
+        {
+            "title": "随笔",
+            "methods": "toInformalEssay",
+            "src": "../../static/svg/informalEssay.svg",
+            "dialogText": "就算是我，也无法让内心平静(。・・)"
+        },
+        {
+            "title": "实验室",
+            "methods": "toLab",
+            "src": "../../static/svg/lab.svg",
+            "dialogText": "颤栗吧！为我所展示的力量！( ‵▽′)ψ"
+        },
+        {
+            "title": "┃"
+        },
+        {
+            "title": "QQ",
+            "methods": "toQQ",
+            "src": "../../static/svg/qq.svg",
+            "dialogText": "被抓到了...但这，会不会是假的呢(→_→)"
+        },
+        {
+            "title": "微信",
+            "methods": "toWeChat",
+            "src": "../../static/svg/weChat.svg",
+            "dialogText": "唔...我感受到了注视(°ー°〃)"
+        },
+        {
+            "title": "GitHub",
+            "methods": "toGitHub",
+            "src": "../../static/svg/gitHub.svg",
+            "dialogText": "这是我不知道多少代的后裔吗(/▽＼)"
+        },
+        {
+            "title": "bilibili",
+            "methods": "toBilibili",
+            "src": "../../static/svg/bilibili.svg",
+            "dialogText": "bilibili干杯!( ゜- ゜)つロ"
+        }
+    ]
+}

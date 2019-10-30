@@ -218,7 +218,6 @@ export default {
     }
   },
   created() {
-    console.log(this)
     var self = this;
     document.onkeydown = function(e) {
       let onEvent = window.event;
@@ -235,7 +234,8 @@ export default {
         self.dialog("这份力量，来自我的赠与( ´･･)ﾉ(._.`)");
       }
     };
-  }
+  },
+  mounted(){}
 };
 </script>
 
